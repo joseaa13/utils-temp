@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.17.0
     container_name: elasticsearch
     environment:
       - node.name=ws-es-node
@@ -23,14 +23,14 @@ services:
         soft: -1
         hard: -1
     volumes:
-      - vibhuviesdata:/usr/share/elasticsearch/data
+      - ~/elastic:/usr/share/elasticsearch/data
     ports:
       - 9200:9200
       - 9300:9300
     networks:
       - esnet
   kibana:
-    image: docker.elastic.co/kibana/kibana:7.3.1
+    image: docker.elastic.co/kibana/kibana:7.17.0
     container_name: kibana
     environment:
       SERVER_NAME: 127.0.0.1
@@ -49,7 +49,7 @@ services:
     restart: "unless-stopped"
     
 volumes:
-  vibhuviesdata:
+  elastic:
     driver: local
 
 networks:
